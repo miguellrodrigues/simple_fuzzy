@@ -45,3 +45,17 @@ class FuzzySet:
         else:
             return .0
 
+    def de_fuzzy(self, values):
+        sum_a = 0
+        sum_b = 0
+
+        for value in values:
+            pertinence = self.calculate_pertinence(value)
+
+            sum_a += (value * pertinence)
+            sum_b += pertinence
+
+        return sum_a / sum_b
+
+
+
