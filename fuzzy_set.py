@@ -1,6 +1,19 @@
 from math import exp
 
 
+def cartesian_product_pertinence(fuzzy_sets, values):
+    if len(fuzzy_sets) != len(values):
+        print("cartesian_product_pertinence, bad arguments")
+        return None
+
+    values = []
+
+    for i in range(len(fuzzy_sets)):
+        values.append(fuzzy_sets[i].calculate_pertinence(values[i]))
+
+    return min(values)
+
+
 class FuzzySet:
     TRIANGULAR = 0
     TRAPEZOIDAL = 1
@@ -56,6 +69,18 @@ class FuzzySet:
             sum_b += pertinence
 
         return sum_a / sum_b
+
+    def union_pertinence(self, fuzzy_set, value):
+        return max(self.calculate_pertinence(value), fuzzy_set.calculate_pertinence(value))
+
+    def intersection_pertinence(self, fuzzy_set, value):
+        return min(self.calculate_pertinence(value), fuzzy_set.calculate_pertinence(value))
+
+    def complement_pertinence(self, value):
+        1 - self.calculate_pertinence(value)
+
+    def equal(self, fuzzy_set):
+        return self.calculate_pertinence(self.values[0]) == fuzzy_set.calculate_pertinence(fuzzy_set.values[0])
 
 
 

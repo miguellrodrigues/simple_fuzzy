@@ -3,7 +3,7 @@ from matplotlib.ticker import ScalarFormatter
 from fuzzy_set import FuzzySet
 import matplotlib.pyplot as plt
 
-low_values = FuzzySet(FuzzySet.TRIANGULAR, [1, 15, 30])
+low_values = FuzzySet(FuzzySet.TRIANGULAR, [0, 15, 30])
 medium_values = FuzzySet(FuzzySet.TRIANGULAR, [15, 30, 45])
 high_values = FuzzySet(FuzzySet.TRIANGULAR, [30, 45, 60])
 
@@ -21,7 +21,6 @@ for i in range(len(sets)):
         pertinence_set[i].append(sets[i].calculate_pertinence(value))
 
 fig, axis = plt.subplots()
-
 
 formatter = ScalarFormatter()
 formatter.set_scientific(False)
