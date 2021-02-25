@@ -1,4 +1,4 @@
-from math import exp
+from math import exp, e
 
 
 # composition_pertinence = sup [ min(Pr(x, y), Ps(y, z)) ]
@@ -55,20 +55,20 @@ class FuzzySet:
             return .0
 
     def _calculate_sinusoidal_pertinence(self, value):
-        if (self.values[1] - self.values[2]) <= value <= (self.values[1] + self.values[2]):
-            return exp((-pow((value - self.values[1]), 2.0)) / self.values[0])
-        else:
-            return .0
+        # return exp(-pow(value - self.values[1], 2.0) / (self.values[0] * pow(2.0, 2.0)))
+        return exp(-self.values[0] * pow(value - self.values[1], 2.0))
 
-    def de_fuzzy(self, values):
+    def de_fuzzy(self, values, pertinence):
         sum_a = 0
         sum_b = 0
 
-        for value in values:
-            pertinence = self.calculate_pertinence(value)
+        i = values[0]
 
-            sum_a += (value * pertinence)
+        while i < values[1]:
+            sum_a += (i * pertinence)
             sum_b += pertinence
+
+            i += 0.0001
 
         return sum_a / sum_b
 
@@ -83,3 +83,4 @@ class FuzzySet:
 
     def equal(self, fuzzy_set):
         return self.calculate_pertinence(self.values[0]) == fuzzy_set.calculate_pertinence(fuzzy_set.values[0])
+
