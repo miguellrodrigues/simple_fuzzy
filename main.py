@@ -3,9 +3,9 @@ from matplotlib.ticker import ScalarFormatter
 from fuzzy_set import FuzzySet
 import matplotlib.pyplot as plt
 
-low_values = FuzzySet(FuzzySet.SINUSOIDAL, [.0001, 0])
-medium_values = FuzzySet(FuzzySet.SINUSOIDAL, [.0001, 250])
-high_values = FuzzySet(FuzzySet.SINUSOIDAL, [.0001, 500])
+low_values = FuzzySet(FuzzySet.SINUSOIDAL, [.03, 7.5])
+medium_values = FuzzySet(FuzzySet.SINUSOIDAL, [.03, 22.5])
+high_values = FuzzySet(FuzzySet.SINUSOIDAL, [.03, 37.5])
 
 sets = [low_values, medium_values, high_values]
 
@@ -15,7 +15,7 @@ pertinence_set = [[], [], []]
 print(" ")
 
 for i in range(len(sets)):
-    for value in range(501):
+    for value in range(100):
         values[i].append(value)
 
         pertinence_set[i].append(sets[i].calculate_pertinence(value))

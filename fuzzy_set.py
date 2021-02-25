@@ -16,6 +16,21 @@ def cartesian_product_pertinence(fuzzy_sets, values):
     return min(values)
 
 
+def de_fuzzy(values, pertinence):
+    sum_a = .0
+    sum_b = .0
+
+    i = values[0]
+
+    while i < values[1]:
+        sum_a += (i * pertinence)
+        sum_b += pertinence
+
+        i += 0.0001
+
+    return sum_a / sum_b
+
+
 class FuzzySet:
     TRIANGULAR = 0
     TRAPEZOIDAL = 1
@@ -57,20 +72,6 @@ class FuzzySet:
     def _calculate_sinusoidal_pertinence(self, value):
         # return exp(-pow(value - self.values[1], 2.0) / (self.values[0] * pow(2.0, 2.0)))
         return exp(-self.values[0] * pow(value - self.values[1], 2.0))
-
-    def de_fuzzy(self, values, pertinence):
-        sum_a = 0
-        sum_b = 0
-
-        i = values[0]
-
-        while i < values[1]:
-            sum_a += (i * pertinence)
-            sum_b += pertinence
-
-            i += 0.0001
-
-        return sum_a / sum_b
 
     def union_pertinence(self, fuzzy_set, value):
         return max(self.calculate_pertinence(value), fuzzy_set.calculate_pertinence(value))
