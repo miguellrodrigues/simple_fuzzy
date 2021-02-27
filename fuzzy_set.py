@@ -1,4 +1,4 @@
-from math import exp, e
+from math import exp
 
 
 # composition_pertinence = sup [ min(Pr(x, y), Ps(y, z)) ]
