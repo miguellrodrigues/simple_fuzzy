@@ -16,17 +16,19 @@ def cartesian_product_pertinence(fuzzy_sets, values):
     return min(values)
 
 
-def de_fuzzy(values, pertinence):
+def de_fuzzy(values_set, pertinence_set):
     sum_a = .0
     sum_b = .0
 
-    i = values[0]
+    for i in range(len(values_set)):
+        values = values_set[i]
 
-    while i < values[1]:
-        sum_a += (i * pertinence)
-        sum_b += pertinence
+        for j in range(len(values)):
+            value = values[j]
+            pertinence = pertinence_set[i]
 
-        i += 0.0001
+            sum_a += value * pertinence
+            sum_b += pertinence
 
     return sum_a / sum_b
 
